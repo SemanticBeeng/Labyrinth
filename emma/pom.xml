@@ -107,14 +107,12 @@
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>
-        <scalastyle-maven-plugin.version>0.8.0</scalastyle-maven-plugin.version>
         <scalatest-maven-plugin.version>1.0</scalatest-maven-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 
         <!-- Predicates -->
         <skipTests>false</skipTests>
         <scala-maven-plugin.skip>true</scala-maven-plugin.skip>
-        <scalastyle-maven-plugin.skip>true</scalastyle-maven-plugin.skip>
         <scalatest-maven-plugin.skip>true</scalatest-maven-plugin.skip>
 
         <!-- Java -->
@@ -687,35 +685,6 @@
                 </executions>
             </plugin>
 
-            <!-- Scala style check -->
-            <plugin>
-                <groupId>org.scalastyle</groupId>
-                <artifactId>scalastyle-maven-plugin</artifactId>
-                <version>${scalastyle-maven-plugin.version}</version>
-                <configuration>
-                    <!-- Predicated plugin -->
-                    <skip>${scalastyle-maven-plugin.skip}</skip>
-                    <!-- Configuration -->
-                    <verbose>false</verbose>
-                    <failOnViolation>true</failOnViolation>
-                    <failOnWarning>true</failOnWarning>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                    <sourceDirectory>${project.basedir}/src/main/scala</sourceDirectory>
-                    <testSourceDirectory>${project.basedir}/src/test/scala</testSourceDirectory>
-                    <detail>true</detail>
-                    <configLocation>${user.dir}/scalastyle_config.xml</configLocation>
-                    <outputFile>${project.build.directory}/scalastyle-output.xml</outputFile>
-                    <outputEncoding>UTF-8</outputEncoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- Check for proper LICENSE header -->
             <plugin>
                 <groupId>com.mycila</groupId>
@@ -741,7 +710,6 @@
                         <exclude>**/NOTICE*</exclude>
                         <exclude>**/README.md</exclude>
                         <exclude>**/**.ipynb</exclude>
-                        <exclude>**/scalastyle_config.xml</exclude>
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
                         <exclude>public/js/paper-full-v0.9.23.min.js</exclude>
